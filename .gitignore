@@ -1,6 +1,7 @@
 ## 노드 모듈
 node_modules
 
-## 폴더
-.cache/
-dist/
+## 폴더 /// .cache파일과 dist폴더는 gitignore에 적용되지 않는다. 실제로 빌드 후 배포되어야 하는 폴더라서 그런 듯하다
+# .cache/
+# dist/
+testFolder/
