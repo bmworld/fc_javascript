@@ -1,6 +1,8 @@
 import study_prototype from './prototype';
 import study_this from './this';
 import study_class from './class';
+import study_Type_number from './dataType_number';
+import study_array from './array';
 // import getType from './getType';
 
 // console.log(getType(1234));

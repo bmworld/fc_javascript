@@ -252,9 +252,9 @@ var amy = {
 }; // amy.normal();
 // amy.arrow();
 },{}],"class.js":[function(require,module,exports) {
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
@@ -272,7 +272,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 //ES6 Classes
 // const study_class = {
@@ -323,12 +323,12 @@ var study_class = new User('bm', 'kim'); // console.log(study_class);
 ///////////////////////////////////////////////////////////////
 //////////////////// Class 상속 ////////////////////
 
-var Vehicle = /*#__PURE__*/_createClass(function Vehicle(name, wheel) {
+var Vehicle = function Vehicle(name, wheel) {
   _classCallCheck(this, Vehicle);
 
   this.name = name;
   this.wheel = wheel;
-});
+};
 
 var myVehicle = new Vehicle('운송수단', '2'); // console.log(myVehicle);
 
@@ -344,7 +344,7 @@ var Bicycle = /*#__PURE__*/function (_Vehicle) {
     // super 자리에서 Vehicle 클래스가 실행된다.
   }
 
-  return _createClass(Bicycle);
+  return Bicycle;
 }(Vehicle);
 
 var myBicycle = new Bicycle('삼천리', 2);
@@ -366,10 +366,47 @@ var Car = /*#__PURE__*/function (_Vehicle2) {
     return _this;
   }
 
-  return _createClass(Car);
+  return Car;
 }(Vehicle);
 
 var myCar = new Car('Jeep', '4', true); // console.log(myCar);
+},{}],"dataType_number.js":[function(require,module,exports) {
+var pi = 3.134514123123; // console.log(pi);
+
+var str = pi.toFixed(2); // console.log(str);
+// console.log(typeof str);
+
+var integer = parseInt(str);
+var float = parseFloat(str); // 소수점 자리 유지 + 숫자타입으로 변환
+// console.log(integer)
+// console.log(float)
+// console.log(typeof float, typeof integer);
+// console.log('abs: ', Math.abs(-12))
+// console.log('min: ', Math.min(2, 8))
+// console.log('max: ', Math.max(2, 8));
+// console.log('ceil: ', Math.ceil(3.14)); // 올림
+// console.log('floor: ', Math.floor(3.14)); // 내림
+// console.log('round: ', Math.round(3.5)); // 반올림
+// console.log('random: ', Math.random()); //
+},{}],"array.js":[function(require,module,exports) {
+var numbers = [1, 2, 3, 4];
+var fruits = ['apple', 'banana', 'cherry']; // const a = fruits.forEach(function (fruit, index) {
+//   console.log(`${fruit}-${index}`);
+// });
+
+var a = fruits.forEach(function (fruit, index) {// console.log(`${fruit}-${index}`);
+}); // foreach() 메서드는 배열반환 안 함
+// console.log('forEach():' , a);
+// const b = fruits.map(function (fruit, index) {
+//   return `${fruit}-${index}`;
+// }); 
+
+var b = fruits.map(function (fruit, index) {
+  return {
+    id: index,
+    name: index
+  };
+}); // console.log('map(): ' , b); // map() 메서드는 기본적으로 "새로운 배열을 반환"함
 },{}],"main.js":[function(require,module,exports) {
 "use strict";
 
@@ -379,8 +416,12 @@ var _this = _interopRequireDefault(require("./this"));
 
 var _class = _interopRequireDefault(require("./class"));
 
+var _dataType_number = _interopRequireDefault(require("./dataType_number"));
+
+var _array = _interopRequireDefault(require("./array"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./prototype":"prototype.js","./this":"this.js","./class":"class.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./prototype":"prototype.js","./this":"this.js","./class":"class.js","./dataType_number":"dataType_number.js","./array":"array.js"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -408,7 +449,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64050" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53013" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -584,5 +625,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","main.js"], null)
+},{}]},{},["../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","main.js"], null)
 //# sourceMappingURL=/main.1f19ae8e.js.map
