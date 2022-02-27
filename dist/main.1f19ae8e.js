@@ -117,460 +117,30 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"prototype.js":[function(require,module,exports) {
-var _this = this;
-
-//////////////////////////////////////////
-// 생성자함수 (prototype)
-var bmworld = {
-  firstname: 'bm',
-  lastname: 'kim',
-  getFullname: function getFullname() {
-    return "".concat(this.firstname, " ").concat(this.lastname); // return `${bmworld.firstname} ${bmworld.lastname}`; // this = 변수의 이름인거다.
-  }
-}; // console.log(bmworld.getFullname());
-
-var sarah = {
-  firstname: 'sarah',
-  lastname: 'seo',
-  getFullname: function getFullname() {
-    return "".concat(this.firstname, " ").concat(this.lastname); // return `${bmworld.firstname} ${bmworld.lastname}`; // this = 변수의 이름인거다.
-  }
-}; // console.log(sarah.getFullname());
-
-var neo = {
-  firstname: 'Neo',
-  lastname: 'smith',
-  getFullname: function getFullname() {
-    return "".concat(this.firstname, " ").concat(this.lastname); // return `${bmworld.firstname} ${bmworld.lastname}`; // this = 변수의 이름인거다.
-  }
-}; // console.log(neo.getFullname());
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// 생성자 함수
-
-function User(first, last) {
-  // 생성자 함수일경우 pascal Case로 사용해주는 것이 JS개발자들의 관행이다.
-  this.firstname = first;
-  this.lastname = last;
-}
-
-User.prototype.getFullName = function () {
-  return "".concat(this.firstname, " ").concat(this.lastname);
-};
-
-User.prototype.hello = 'Hello~~~';
-var instance_bmworld = new User('bm', 'kim'); // 생성자함수 new를 사영하여 인스턴스를 생성한다.
-
-var instance_sarah = new User('sarah', 'seo'); // 생성자함수 new를 사영하여 인스턴스를 생성한다.
-
-var instance_neo = new User('neo', 'smith'); // 생성자함수 new를 사영하여 인스턴스를 생성한다.
-// console.log(instance_bmworld);
-// console.log(instance_bmworld.getFullName());
-// console.log(instance_sarah);
-// console.log(instance_neo);
-// console.log(instance_neo.hello);
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////  this 활용  ////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-//////////////////////// 일반함수와 화살표함수가 가리키는 THIS는 서로 다르기 때문에, 상황에 맞게 사용하는 방법을 익히시라.
-// 일반(Normal)함수는 호출 위치에 따라 this정의!
-// 화살표(Arrow)함수는 자신이 선언(만들어진) 된 함수 범위 내에서 this 정의!
-
-window.name = 'window`s this';
-
-function StudyThis(name) {
-  this.name = name;
-}
-
-StudyThis.prototype.normal = function () {
-  console.log(this.name);
-};
-
-StudyThis.prototype.arrow = function () {
-  _this.name = '이게 함수영역에서 선언한 this';
-  console.log(_this.name);
-  console.log(_this);
-};
-
-var study_this = new StudyThis('bmworld'); // study_this.normal();
-// study_this.arrow();
-
-var timer = {
-  name: 'bmworld!',
-  timeout: function timeout() {
-    setTimeout(function () {
-      console.log(this.name); // 1. 일반함수의 this는 '호출위치'에서 정의된다!
-    }, 1000);
-  }
-}; // timer.timeout(); // 2. 즉 일반함수는 seTimeout가 실행되는 로직 어딘가에서 실행된다. 즉, 전역에서 호출되었다. 그래서 this는 전역 window를 가르킨다.
-
-var timer_arrow = {
-  name: 'arrow함수의 this가 가르키는것은 timer_arrow인 객체{}다.!',
-  timeout: function timeout() {
-    setTimeout(function () {// console.log(this.name); // 화살표함수를 감싸고 있는 함수범위는 timeout이라는 메서드를 정의할 때 사용한 무명 함수(function(){})이고,
-      // 이 함수범위에서 this가 정의된 것다.
-      // 함수범위의 this는 일반함수(function(){})가 정의된 timer_arrow라는 객체{}를 가리킨다.
-    }, 1000);
-  }
-};
-timer_arrow.timeout(); // 2. 즉 일반함수는 seTimeout가 실행되는 로직 어딘가에서 실행된다. 즉, 전역에서 호출되었다. 그래서 this는 전역 window를 가르킨다.
-},{}],"this.js":[function(require,module,exports) {
-var _this = this;
-
-/// this
-// 일반(Normal)함수는 호출 위치에 따라 this정의!
-// 화살표(Arrow)함수는 자신이 선언(만들어진) 된 함수 범위 내에서 this 정의!
-var bmworld = {
-  name: 'bm',
-  normal: function normal() {
-    console.log(this.name); // 이 위치에서는, 호출위치가 어딘지 모르기 때문에, this를 특정할 수 없다.
-  },
-  arrow: function arrow() {
-    console.log(_this.name); // 화살표함수는, 호출위치랑 전혀 상관없다 // 따라서 , 선언되는 위치에서 this가 무엇인지 바로 알 수 있다.
-  }
-}; // bmworld.normal(); //
-// 메소드인 normal은 기본적으로 점표기법에 의해서 객체인 bmworld 내부에서 실행된다.
-// 메소드 normal에 딸려있고 거기에 의해서 실해오디기 때문에, bmworld가 곧 this이다. 그래서 console에서 this가 bmworld로 설정되어서 값을 할당할 수 있는 것이다.
-// bmworld.arrow(); // undefined
-
-var amy = {
-  name: 'Amy',
-  normal: bmworld.normal,
-  arrow: bmworld.arrow
-}; // amy.normal();
-// amy.arrow();
-},{}],"class.js":[function(require,module,exports) {
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-//ES6 Classes
-// const study_class = {
-//   name: 'bmworld',
-//   normal() {
-//     console.log(this.name);
-//   },
-//   arrow: () =>{
-//     console.log(this.name)
-//   }
-// }
-// study_class.normal();
-// study_class.arrow(); // 
-///// --- PROTOTYPE ---
-function User_prototypeVersion(first, last) {
-  this.firstName = first;
-  this.lastName = last;
-}
-
-User_prototypeVersion.prototype.getFullName = function () {
-  return "".concat(this.firstName, " ").concat(this.lastName);
-};
-
-var user1 = new User_prototypeVersion('bm_prototypeVersion', 'kim_prototypeVersion'); // console.log(user1.getFullName());
-
-var User = /*#__PURE__*/function () {
-  function User(first, last) {
-    _classCallCheck(this, User);
-
-    // constructor: 내부 함수function임
-    this.firstName = first;
-    this.lastName = last;
-  }
-
-  _createClass(User, [{
-    key: "getFullName",
-    value: function getFullName() {
-      return "".concat(this.firstName, " ").concat(this.lastName);
-    }
-  }]);
-
-  return User;
-}();
-
-var study_class = new User('bm', 'kim'); // console.log(study_class);
-// console.log(study_class.getFullName());
-///////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////
-//////////////////// Class 상속 ////////////////////
-
-var Vehicle = function Vehicle(name, wheel) {
-  _classCallCheck(this, Vehicle);
-
-  this.name = name;
-  this.wheel = wheel;
-};
-
-var myVehicle = new Vehicle('운송수단', '2'); // console.log(myVehicle);
-
-var Bicycle = /*#__PURE__*/function (_Vehicle) {
-  _inherits(Bicycle, _Vehicle);
-
-  var _super = _createSuper(Bicycle);
-
-  function Bicycle(name, wheel) {
-    _classCallCheck(this, Bicycle);
-
-    return _super.call(this, name, wheel); // super --> extends 키워드 뒤의 Vehicle 클래스를 의미한다.
-    // super 자리에서 Vehicle 클래스가 실행된다.
-  }
-
-  return Bicycle;
-}(Vehicle);
-
-var myBicycle = new Bicycle('삼천리', 2);
-var daughterBicicle = new Bicycle('세발', 3); // console.log(myBicycle);
-// console.log(daughterBicicle);
-
-var Car = /*#__PURE__*/function (_Vehicle2) {
-  _inherits(Car, _Vehicle2);
-
-  var _super2 = _createSuper(Car);
-
-  function Car(name, wheel, license) {
-    var _this;
-
-    _classCallCheck(this, Car);
-
-    _this = _super2.call(this, name, wheel);
-    _this.license = license;
-    return _this;
-  }
-
-  return Car;
-}(Vehicle);
-
-var myCar = new Car('Jeep', '4', true); // console.log(myCar);
-},{}],"dataType_number.js":[function(require,module,exports) {
-var pi = 3.134514123123; // console.log(pi);
-
-var str = pi.toFixed(2); // console.log(str);
-// console.log(typeof str);
-
-var integer = parseInt(str);
-var float = parseFloat(str); // 소수점 자리 유지 + 숫자타입으로 변환
-// console.log(integer)
-// console.log(float)
-// console.log(typeof float, typeof integer);
-// console.log('abs: ', Math.abs(-12))
-// console.log('min: ', Math.min(2, 8))
-// console.log('max: ', Math.max(2, 8));
-// console.log('ceil: ', Math.ceil(3.14)); // 올림
-// console.log('floor: ', Math.floor(3.14)); // 내림
-// console.log('round: ', Math.round(3.5)); // 반올림
-// console.log('random: ', Math.random()); //
-},{}],"array.js":[function(require,module,exports) {
-var numbers = [1, 2, 3, 4];
-var fruits = ['apple', 'banana', 'cherry']; // const a = fruits.forEach(function (fruit, index) {
-//   console.log(`${fruit}-${index}`);
-// });
-
-var a = fruits.forEach(function (fruit, index) {// console.log(`${fruit}-${index}`);
-}); // foreach() 메서드는 배열반환 안 함
-// console.log('forEach():' , a);
-// const b = fruits.map(function (fruit, index) {
-//   return `${fruit}-${index}`;
-// }); 
-
-var b = fruits.map(function (fruit, index) {
-  return {
-    id: index,
-    name: index
-  };
-}); // console.log('map(): ' , b); // map() 메서드는 기본적으로 "새로운 배열을 반환"함
-},{}],"getType.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = getType;
-
-function getType(data) {
-  return Object.prototype.toString.call(data).slice(8, -1);
-} // export default
-},{}],"getRandom.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.random = random;
-exports.default = exports.user = void 0;
-
-function random() {
-  return Math.floor(Math.random() * 10);
-}
-
-var user = {
-  name: 'bmworld',
-  age: 33
-};
-exports.user = user;
-var _default = 124;
-exports.default = _default;
-},{}],"main.js":[function(require,module,exports) {
-"use strict";
-
-var _prototype = _interopRequireDefault(require("./prototype"));
-
-var _this = _interopRequireDefault(require("./this"));
-
-var _class = _interopRequireDefault(require("./class"));
-
-var _dataType_number = _interopRequireDefault(require("./dataType_number"));
-
-var _array = _interopRequireDefault(require("./array"));
-
-var _getType = _interopRequireDefault(require("./getType"));
-
-var R = _interopRequireWildcard(require("./getRandom"));
-
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// import {random , user as customImportName } from './getRandom';
-console.log(R); // console.log(getType(1234));
-// console.lo g(getType(false));
-// console.log(getType(null));
-// console.log(getType({}));
-// console.log(getType([]));
-// // 산술 연산자 (arithmetic operator)
-// console.log(1 + 2)
-// console.log(5 - 7)
-// console.log(3 * 3)
-// console.log(10 / 2 )
-// console.log(7 % 2 )
-// // 할당 연산자 (assignment operator)
-// let a = 2
-// a -= 1; // a = a - 1
-// console.log(a);
-// a += 1; // a = a + 1
-// console.log(a);
-// // 비교 연산자 (comparison operator)
-// const c = 1;
-// const d = 3;
-// console.log(c === d);
-// console.log(c !== d);
-// console.log(c < d);
-// // 논리 연산자 (logical operator)
-// const e = 1 === 1;
-// const f = 'AB' === 'AB';
-// const g = true;
-// console.log(e);
-// console.log(f);
-// console.log(g);
-// console.log('&&: ', e && f && g);
-// console.log('||: ', e || f);
-// import random from './getRandom';
-// // 조건문 (if Statement)
-// const a = random();
-// switch(a){
-//   case 0:
-//     console.log('a is 0');
-//     break; // break를 안 걸었을 경우, 아래의 명령문이 실행됨.
-//   case 2:
-//     console.log('a is 2');
-//     break;
-//   case 4:
-//     console.log('a is 4');
-//     break;
-//   default:
-//     console.log('rest...') // else의 나머지 조건에 해당하는 거다. break문 필요없음.
-// }
-// if( a === 0 ){
-//   console.log('a is 0');
-// } else if ( a === 2) {
-//   console.log('a is 2');
-// } else if ( a === 4) {
-//   console.log('a is 4');
-// } else {
-//   console.log('rest..')
-// }
-// const ulElem = document.querySelector('ul');
-// for( let i =0; i < 3; i += 1){
-//   const li = document.createElement('li');
-//   li.textContent = `list-${i + 10}`;
-//   ulElem.appendChild(li);
-// }
-// 변수 유효범위 (Variable Scrope)
-// 함수레벨: var
-// 블록레벨: let, const
-// function scope(){
-//   if (true){
-//     var a = 123;
-//     console.log(a);
-//   }
-// }
-// scope();
-// 화살표함수
-// const doubleArrow = x => {x * 2}; // 중괄호를 사용할 경우에, return 키워드를 사용해야 반환된다.
-// const doubleArrow = x => x * 2; //  화살표함수는, 중괄호가 없을 경우, 값반환을 기본적으로 한다.
-// console.log('doubleArrow: ', doubleArrow(7));
-// const doubleArrow2 = x => ({
-//   name: 'bmworld',
-//   age: '33',
-//   value: x*7
-// }); //  화살표함수는, 중괄호가 없을 경우, 값반환을 기본적으로 한다.
-// console.log('doubleArrow: 화살표함수는 객체를 반환할 때는 소괄호기호를 사용하면 된다. ', doubleArrow2(7));
-/// 기본함수
-// const k = 7;
-// function double(){
-//   console.log( k * 2);
-// }
-// double();
-// 즉시 실행함수
-// (function(){
-//   console.log(k * 3);
-// })();
-// 호이스팅 (Hoisting)
-// 함수 선언부가 유효범위 최상단으로 끌어올려지는 현상
-// 콜백 (Callback)
-// 함수의 '인수'로 사용되는 함수
-// function timeout(callback) {
-//   setTimeout(()=>{
-//     console.log('bmworld!');
-//     callback();
-//   },1000);
-// }
-// timeout(()=>{
-//   console.log('callback done!')
-// });
-/////
-// console.log(random());
-},{"./prototype":"prototype.js","./this":"this.js","./class":"class.js","./dataType_number":"dataType_number.js","./array":"array.js","./getType":"getType.js","./getRandom":"getRandom.js"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+})({"main.js":[function(require,module,exports) {
+var str = "\n010-1231-4123.\nthehgello@gmail.com\nhttps://www.omdbapi.com/?apikey=89e04afa&s=frozen\nhttp://localhost:1234\nhttsss://localhost:1234\nhtstsss://localhost:1234\nThe quick brown fox dog jumps theGold\naabbbbbggdddddd\nhxdp\nd"; // const regexp = new RegExp('the', 'gi');
+//g flag(옵션)를 사용하면, 검색된 문장을 'ARRAY'로 만들어준다
+//***i는 array로 반환하지 않는다 (대소문자 구분만 가능케하는 옵션)
+// console.log(str.match(regexp));
+
+var regexp_literalMethod = /the/g; // console.log(str.match(regexp_literalMethod));
+
+var regexp = /theGold/gi; // console.log(regexp.test(str));
+// console.log(str.replace(regexp, '바뀐 부분이다')) // 원본데이터를 손상시키지 않는다.
+// console.log(str)
+// str = str.replace(regexp, '바뀐 부분이다');
+// console.log(str.match(/\.$/gim)) 
+// $ : 문자가 끝나는 위치까지 찾는다
+// console.log(str.match(/h..p/g)) // h(임의의문자)(임의의문자)p
+// console.log(str.match(/fox|dog/g)) //
+// console.log(str.match(/fox|dog/)) // g플래그가 없을 경우, 둘 중 먼저 찾아지는 것만 찾음
+// console.log(str.match(/dog|fox/)) //
+// console.log(str.match(/htt?p?/g)) //
+// console.log(str.match(/d{2,5}/g)) // 2개 이상 5개 이하 연속 일치
+
+console.log(str.match(/\b\w{2,3}\b/g)); // \w : 숫자 영어 알파벳 을 모두 검색
+// \b : 숫자, 영어, 알파벳을 제외한 것을 '경계'로 만들어준다 --> 010-234 <==여기서는 하이픈(-)
+},{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -598,7 +168,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61128" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52492" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -629,9 +199,8 @@ if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
         assetsToAccept.forEach(function (v) {
           hmrAcceptRun(v[0], v[1]);
         });
-      } else if (location.reload) {
-        // `location` global exists in a web worker context but lacks `.reload()` function.
-        location.reload();
+      } else {
+        window.location.reload();
       }
     }
 
@@ -774,5 +343,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","main.js"], null)
+},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","main.js"], null)
 //# sourceMappingURL=/main.1f19ae8e.js.map

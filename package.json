@@ -5,12 +5,17 @@
   "main": "index.js",
   "scripts": {
     "dev": "parcel index.html",
+    "reg": "parcel REGEXP/index.html",
     "build": "parcel build index.html"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "parcel-bundler": "^1.12.5"
+    "parcel-bundler": "^1.12.3"
+  },
+  "dependencies": {
+    "axios": "^0.26.0",
+    "lodash": "^4.17.21"
   }
 }
