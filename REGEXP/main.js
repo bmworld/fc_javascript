@@ -53,5 +53,3 @@ console.log(str.match(/\b\w{2,3}\b/g))
 
 
 
-
-////여기 추가햇슴ㅋㅋ
