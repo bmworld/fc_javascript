@@ -1,6 +1,7 @@
 import study_prototype from './prototype';
 import study_this from './this';
 import study_class from './class';
+import lodash from './lodash';
 // import getType from './getType';
 
 // console.log(getType(1234));
@@ -189,3 +190,51 @@ import study_class from './class';
 // });
 
 
+
+////--------------------------------------------
+////-------------------- JSON
+////--------------------------------------------
+
+import myData from './myData.json'; // js만 확장자를 새얅할 수 있다.
+// console.log(myData);
+
+
+const user = {
+  name: "bmworld",
+  age: 90,
+  likes: [
+    'Jesus Christ',
+    'IU',
+    'talk about Faith'
+  ]
+
+}
+
+// console.log('user', user);
+
+const str = JSON.stringify(user); // json파일의 모든 data를 전부 String으로 변환함 / 따라서 객체에서 스트링으로 변함
+// console.log(str); 
+// console.log(typeof str);
+
+const obj = JSON.parse(str); // String Data를 다시 json 파일로 사용할수있게 object로 변환시킴
+obj.age = 20;
+// console.log('obj', obj);
+// console.log(typeof obj);
+
+
+
+
+
+////--------------------------------------------
+////-------------------- LocalStorage
+////--------------------------------------------
+
+const str_localStorage = localStorage.getItem('user');
+// console.log(str_localStorage);
+
+
+// localStorage.setItem('user', JSON.stringify(user));// LocalStorage에 저장할때는 객체가 아닌, 문자데이터로 조정해야함
+localStorage.setItem('user', JSON.stringify(obj));// LocalStorage에 저장할때는 객체가 아닌, 문자데이터로 조정해야함
+
+// console.log(JSON.parse(localStorage.getItem('user')));
+// localStorage.removeItem('user');
