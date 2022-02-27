@@ -3,10 +3,14 @@ import study_this from './this';
 import study_class from './class';
 import study_Type_number from './dataType_number';
 import study_array from './array';
-// import getType from './getType';
+import getType from './getType';
+// import {random , user as customImportName } from './getRandom';
+import * as R from './getRandom';
+
+console.log(R);
 
 // console.log(getType(1234));
-// console.log(getType(false));
+// console.lo g(getType(false));
 // console.log(getType(null));
 // console.log(getType({}));
 // console.log(getType([]));
@@ -191,3 +195,7 @@ import study_array from './array';
 // });
 
 
+
+/////
+
+// console.log(random());
