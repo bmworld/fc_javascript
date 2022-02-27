@@ -1,7 +1,20 @@
-## 노드 모듈
 node_modules
+# 노드 모듈
 
-## 폴더 /// .cache파일과 dist폴더는 gitignore에 적용되지 않는다. 실제로 빌드 후 배포되어야 하는 폴더라서 그런 듯하다
-# .cache/
-# dist/
-testFolder/
+.cache 
+# parcel-bundler에서 자동으로 생성해주는 폴더
+
+dist
+# 개발서버를 열거나 제품모드로 빌드하게되면 자동으로 생성됨 
+
+# 폴더 /// .cache파일과 dist폴더는 gitignore에 적용되지 않는다. (왜죠?)
+# .DS_Store
+
+
+
+# MEMO 
+# .cache폴더와 dist 폴더가 이미 git 버전관리에 포함되있다면?
+# git버전관리 리스트에서 제거해줘야만, .gitignore이 먹힌다.
+# 아래 명령어를 써서, git리스트에서 삭제해주시라.
+# $ git rm -rf dist
+# $ git rm -rf .cache

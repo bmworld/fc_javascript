@@ -3,14 +3,15 @@
 
 let str = `
 010-1231-4123.
-thehgello@gmail.com
+theSecond@gmail.com
 https://www.omdbapi.com/?apikey=89e04afa&s=frozen
 http://localhost:1234
 httsss://localhost:1234
 htstsss://localhost:1234
 The quick brown fox dog jumps theGold
-aabbbbbggdddddd
+aabbbbbggdddddd_
 hxdp
+동해물과 백두산이 마르고 닳도록 하나님이 보우하사 우리나라 만세
 d`
 
 // const regexp = new RegExp('the', 'gi');
@@ -47,9 +48,22 @@ const regexp = /theGold/gi;
 
 
 // console.log(str.match(/d{2,5}/g)) // 2개 이상 5개 이하 연속 일치
-console.log(str.match(/\b\w{2,3}\b/g))
+// console.log(str.match(/\b\w{2,3}\b/g))
 // \w : 숫자 영어 알파벳 을 모두 검색
 // \b : 숫자, 영어, 알파벳을 제외한 것을 '경계'로 만들어준다 --> 010-234 <==여기서는 하이픈(-)
 
 
+// console.log(str.match(/\bf\w{1,}\b/g)); // 소문자 f로 시작하는 모든 단어
+// console.log(str.match(/\d{1,}/g)); //숫자 덩어리만
 
+
+
+// const h = `  the hello world    !
+
+// `
+// console.log(h.replace(/\s/g, "")); //숫자 덩어리만
+
+
+  
+// console.log(str.match(/.{1,}(?=@)/g)); // 앞쪽일치패턴 -> @ 골뱅이 앞쪽을 매칭
+console.log(str.match(/(?<=@).{1,}/g));
