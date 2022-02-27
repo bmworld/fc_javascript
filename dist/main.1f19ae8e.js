@@ -118,7 +118,28 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"main.js":[function(require,module,exports) {
-console.log('hello~~~');
+var str = "\n010-1231-4123.\nthehgello@gmail.com\nhttps://www.omdbapi.com/?apikey=89e04afa&s=frozen\nhttp://localhost:1234\nhttsss://localhost:1234\nhtstsss://localhost:1234\nThe quick brown fox dog jumps theGold\naabbbbbggdddddd\nhxdp\nd"; // const regexp = new RegExp('the', 'gi');
+//g flag(옵션)를 사용하면, 검색된 문장을 'ARRAY'로 만들어준다
+//***i는 array로 반환하지 않는다 (대소문자 구분만 가능케하는 옵션)
+// console.log(str.match(regexp));
+
+var regexp_literalMethod = /the/g; // console.log(str.match(regexp_literalMethod));
+
+var regexp = /theGold/gi; // console.log(regexp.test(str));
+// console.log(str.replace(regexp, '바뀐 부분이다')) // 원본데이터를 손상시키지 않는다.
+// console.log(str)
+// str = str.replace(regexp, '바뀐 부분이다');
+// console.log(str.match(/\.$/gim)) 
+// $ : 문자가 끝나는 위치까지 찾는다
+// console.log(str.match(/h..p/g)) // h(임의의문자)(임의의문자)p
+// console.log(str.match(/fox|dog/g)) //
+// console.log(str.match(/fox|dog/)) // g플래그가 없을 경우, 둘 중 먼저 찾아지는 것만 찾음
+// console.log(str.match(/dog|fox/)) //
+// console.log(str.match(/htt?p?/g)) //
+// console.log(str.match(/d{2,5}/g)) // 2개 이상 5개 이하 연속 일치
+
+console.log(str.match(/\b\w{2,3}\b/g)); // \w : 숫자 영어 알파벳 을 모두 검색
+// \b : 숫자, 영어, 알파벳을 제외한 것을 '경계'로 만들어준다 --> 010-234 <==여기서는 하이픈(-)
 },{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -147,7 +168,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51802" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52492" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

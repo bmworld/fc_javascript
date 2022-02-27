@@ -6,7 +6,7 @@ function fetchMovies() {
   // Query //
   // apikey: 해당사이트에서 발급받은 KEY
   // s: Movie title to search for.
-  axios.get('https://www.omdbapi.com/?apikey=89e04afa&s=Lord')
+  axios.get('https://www.omdbapi.com/?apikey=89e04afa&s=frozen')
   .then(res=>{
     console.log(res);
     const h1El = document.querySelector('h1');
